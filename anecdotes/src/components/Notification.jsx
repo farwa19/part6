@@ -1,4 +1,10 @@
+import { useAnecdotes, useAnecdoteStore } from "../store"
 const Notification = () => {
+  const notification = useAnecdoteStore((state) => state.notification)
+  if (!notification) {
+    return null
+  }
+
   const style = {
     border: "solid",
     padding: 10,
@@ -7,9 +13,9 @@ const Notification = () => {
   }
 
   return (
-    <div style={style} data-testid="notification">
-      render here notification...
-    </div>
+    
+      <div style={style} id = "notification" data-testid="notification">{notification}</div>
+    
   )
 }
 

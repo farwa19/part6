@@ -3,27 +3,27 @@
     {
       "content": "Make it work, then make it fast",
       "id": "5",
-      "votes": 1
+      "votes": 0
     },
     {
       "content": "There are two hard things in computer science",
       "id": "4",
-      "votes": 0
+      "votes": 3
     },
     {
       "content": "Untested code is broken code",
       "id": "3",
-      "votes": 0
+      "votes": 3
     },
     {
       "content": "Simplicity is the ultimate sophistication",
       "id": "2",
-      "votes": 0
+      "votes": 5
     },
     {
       "content": "Real artists ship code",
       "id": "1",
-      "votes": 0
+      "votes": 7
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
