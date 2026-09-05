@@ -1,11 +1,15 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
+import axios from 'axios'
 
 vi.mock('axios', () => ({
-  get: vi.fn(() => Promise.resolve({ data: [] })),
-  post: vi.fn(() => Promise.resolve({ data: { id: '1', content: 'Test anecdote', votes: 0 } })),
-  put: vi.fn(() => Promise.resolve({ data: { id: '1', content: 'Test anecdote', votes: 1 } })),
-  delete: vi.fn(() => Promise.resolve({})),
+  default: {
+    get: vi.fn(() => Promise.resolve({ data: [] })),
+    post: vi.fn(() => Promise.resolve({ data: { id: '1', content: 'Test anecdote', votes: 0 } })),
+    put: vi.fn(() => Promise.resolve({ data: { id: '1', content: 'Test anecdote', votes: 1 } })),
+    delete: vi.fn(() => Promise.resolve({})),
+    },
+
 }))
 
 import { useAnecdoteStore } from './store'
@@ -24,6 +28,7 @@ describe('anicdote store', ()=>{
         })
 
         const state = useAnecdoteStore.getState()
+        console.log('State after initAnecdotes:', state)
         expect(state.anecdotes).toEqual([])
       })
     it('displays anecdotes received from the store sorted descending by votes', async () => {
