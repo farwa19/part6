@@ -44,9 +44,10 @@ const App = () => {
     <div>{anecdote.content}</div>
     <div>
       <span>has {anecdote.votes}</span>
-      <button name="vote" onClick={() => updateAnicdote(anecdote)}>
+      <div><button name="vote" onClick={() => updateAnicdote(anecdote)}>
         vote
       </button>
+      </div>
       {anecdote.votes === 0 && deleteAnicdote && (
         <button onClick={() => deleteAnicdote(anecdote.id)}>delete</button>
       )}
