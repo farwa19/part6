@@ -1,35 +1,58 @@
-import AnecdoteForm from './components/AnecdoteForm'
-import Notification from './components/Notification'
+import { useState } from 'react'
+import { useAnicdote } from './hooks/newanicdote'
 
 const App = () => {
-  const handleVote = (anecdote) => {
-    console.log('vote')
+  const { updateAnicdote, anicdotes, isError, isPending, addAnicdote: addAnicdoteToServer, deleteAnicdote } = useAnicdote()
+  const [filter, setFilter] = useState('')
+
+  const addAnicdote = async (event) => {
+    event.preventDefault()
+    const content = event.target.anecdote.value
+    event.target.reset()
+    addAnicdoteToServer(content)
   }
 
-  const anecdotes = [
-    {
-      content: 'If it hurts, do it more often',
-      id: '47145',
-      votes: 0,
-    },
-  ]
+  if (isPending) {
+    return <div>loading data...</div>
+  }
+
+  if (isError) {
+    return <div>anecdote service not available due to problems in server</div>
+  }
+
+  // Filter and sort anecdotes descending by votes
+  const filteredAnecdotes = anicdotes
+    .filter((a) => a.content.toLowerCase().includes(filter.toLowerCase()))
+    .sort((a, b) => b.votes - a.votes)
 
   return (
     <div>
-      <h3>Anecdote app</h3>
+      <h2>Anecdotes</h2>
 
-      <Notification />
-      <AnecdoteForm />
+      <div>
+        filter <input data-testid="filter" value={filter} onChange={(e) => setFilter(e.target.value)} />
+      </div>
 
-      {anecdotes.map((anecdote) => (
-        <div key={anecdote.id}>
-          <div>{anecdote.content}</div>
-          <div>
-            has {anecdote.votes}
-            <button onClick={() => handleVote(anecdote)}>vote</button>
-          </div>
-        </div>
-      ))}
+      <h2>create new</h2>
+      <form onSubmit={addAnicdote}>
+        <input name="anecdote" />
+        <button type="submit">create</button>
+      </form>
+
+      {filteredAnecdotes.map((anecdote) => (
+  <li key={anecdote.id}>
+    <div>{anecdote.content}</div>
+    <div>
+      <span>has {anecdote.votes}</span>
+      <button name="vote" onClick={() => updateAnicdote(anecdote)}>
+        vote
+      </button>
+      {anecdote.votes === 0 && deleteAnicdote && (
+        <button onClick={() => deleteAnicdote(anecdote.id)}>delete</button>
+      )}
+    </div>
+  </li>
+))}
     </div>
   )
 }

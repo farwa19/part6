@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { devtools } from 'zustand/middleware'
 const AnecdoteList = () => {
  const anecdotes = useAnecdotes();
-  const initAnecdotes = create(devtools((set, get) => state.initAnecdotes));
+  const initAnecdotes = useAnecdoteStore((state) => state.initAnecdotes);
   const vote = useAnecdoteStore((state) => state.vote);
   const deleteAnecdote = useAnecdoteStore((state) => state.deleteAnecdote);
   

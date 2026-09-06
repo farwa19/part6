@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import axios from 'axios'
+import { devtools } from 'zustand/middleware'
 
 const getId = () => (100000 * Math.random()).toFixed(0)
 
