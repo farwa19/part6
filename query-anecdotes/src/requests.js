@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3001/anecdotes'
+const baseUrl = 'http://localhost:3000/anecdotes'
 
 export const getAnicdotes = async () => {
   const response = await fetch(baseUrl)
@@ -10,6 +10,10 @@ export const getAnicdotes = async () => {
 }
 
 export const createAnicdote = async (newAnicdote) => {
+  console.log(newAnicdote.content.length < 5 )
+ if (newAnicdote.content.length < 5) {
+    throw new Error('Too short anecdote, must be at least 5 characters long')
+  }
   
 
   const options = {

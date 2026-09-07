@@ -3,22 +3,88 @@
     {
       "content": "If it hurts, do it more often",
       "id": "47145",
-      "votes": 0
+      "votes": 6
     },
     {
       "content": "Premature optimization is the root of all evil",
       "id": "21149",
-      "votes": 0
+      "votes": 4
     },
     {
       "content": "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
       "id": "69581",
-      "votes": 0
+      "votes": 3
     },
     {
       "content": "Make it work, then make it fast",
       "id": "25124",
-      "votes": 0
+      "votes": 1
+    },
+    {
+      "content": "mnbvh",
+      "votes": 0,
+      "id": "XfkjYhdoSHA"
+    },
+    {
+      "content": "mb",
+      "votes": 0,
+      "id": "54bxEnwABLU"
+    },
+    {
+      "content": "SX\\",
+      "votes": 0,
+      "id": "Lqr-Kyw624U"
+    },
+    {
+      "content": "mn",
+      "votes": 0,
+      "id": "CeC3zJ4NwZ0"
+    },
+    {
+      "content": "mn",
+      "votes": 0,
+      "id": "1__7VcDA0u4"
+    },
+    {
+      "content": "jjh",
+      "votes": 0,
+      "id": "W8a4g4eAN00"
+    },
+    {
+      "content": "mbb",
+      "votes": 0,
+      "id": "B_ibvHlIJk4"
+    },
+    {
+      "content": "mmnmnnm",
+      "votes": 0,
+      "id": "MIagU0O75uY"
+    },
+    {
+      "content": "bhj",
+      "votes": 0,
+      "id": "ZvRZOK2zny4"
+    },
+    {
+      "content": "h",
+      "votes": 0,
+      "id": "CjnXgpr0DYI"
+    },
+    {
+      "content": "j",
+      "votes": 0,
+      "id": "5i12C4BTN8Y"
+    },
+    {
+      "content": "hh",
+      "votes": 0,
+      "id": "vGlDkJJCwAY"
+    },
+    {
+      "content": "Freshly baked wisdom",
+      "votes": 0,
+      "id": "FJCErEGoi7A"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

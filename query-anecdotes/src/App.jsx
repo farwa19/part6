@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useAnicdote } from './hooks/newanicdote'
+import { Notification } from './components/NotificationContext' // Import the display component
 
 const App = () => {
   const { updateAnicdote, anicdotes, isError, isPending, addAnicdote: addAnicdoteToServer, deleteAnicdote } = useAnicdote()
@@ -28,6 +29,9 @@ const App = () => {
   return (
     <div>
       <h2>Anecdotes</h2>
+      
+      {/* Render the Notification component here */}
+      <Notification />
 
       <div>
         filter <input data-testid="filter" value={filter} onChange={(e) => setFilter(e.target.value)} />
@@ -40,20 +44,21 @@ const App = () => {
       </form>
 
       {filteredAnecdotes.map((anecdote) => (
-  <li key={anecdote.id}>
-    <div>{anecdote.content}</div>
-    <div>
-      <span>has {anecdote.votes}</span>
-      <div><button name="vote" onClick={() => updateAnicdote(anecdote)}>
-        vote
-      </button>
-      </div>
-      {anecdote.votes === 0 && deleteAnicdote && (
-        <button onClick={() => deleteAnicdote(anecdote.id)}>delete</button>
-      )}
-    </div>
-  </li>
-))}
+        <li key={anecdote.id}>
+          <div>{anecdote.content}</div>
+          <div>
+            <span>has {anecdote.votes}</span>
+            <div>
+              <button name="vote" onClick={() => updateAnicdote(anecdote)}>
+                vote
+              </button>
+            </div>
+            {anecdote.votes === 0 && deleteAnicdote && (
+              <button onClick={() => deleteAnicdote(anecdote.id)}>delete</button>
+            )}
+          </div>
+        </li>
+      ))}
     </div>
   )
 }

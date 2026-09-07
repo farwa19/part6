@@ -1,8 +1,11 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getAnicdotes, createAnicdote, updateAnicdote} from '../requests'
-
+import { useNotificationDispatch }  from '../components/NotificationContext'
 export const useAnicdote = () => {
+  
   const queryClient = useQueryClient()
+  const dispatch = useNotificationDispatch()
+  
 
   const result = useQuery({
     queryKey: ['anicdotes'],
@@ -14,13 +17,32 @@ export const useAnicdote = () => {
     mutationFn: createAnicdote,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['anicdotes'] })
+      dispatch("An anicdote was created")
+      setTimeout(() => {
+        dispatch(null)
+      }, 5000)
+    },
+    onError: (error) => {
+      
+      
+      dispatch(error.message)
+      setTimeout(() => {
+        dispatch(null)
+      }, 5000)
     }
   })
 
   const updateAnicdotesMutation = useMutation({
     mutationFn: updateAnicdote,
-    onSuccess: () => {
+    onSuccess: (updatedAnecdote) => {
       queryClient.invalidateQueries({ queryKey: ['anicdotes'] })
+      console.log(updatedAnecdote)
+      dispatch(`Anecdote '${updatedAnecdote.content}' voted`)
+      setTimeout(() => {
+        dispatch(null)
+      }, 5000)
+     
+      
     }
   })
 
@@ -40,5 +62,6 @@ export const useAnicdote = () => {
         ...anicdote,
         votes: anicdote.votes + 1
       })
+      
   }
 }
